@@ -19,7 +19,7 @@ const StyledNewsTicker = styled.marquee`
 export default function NewsTicker() {
   return (
     <StyledNewsTicker>
-      <div className="container">This is the ticker!</div>
+      <div className="container">Work in progress, coming soon!</div>
     </StyledNewsTicker>
   );
 }
