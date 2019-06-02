@@ -1,12 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 
-const StyledNewsTicker = styled.marquee`
+const StyledNewsTicker = styled.div`
   height: 20px;
   width: 100%;
   font-size: 10px;
   background-color: black;
-  color: ${props => props.theme.lemon};
+  color: ${({ theme }) => theme.lemon};
 
   .container {
     height: 100%;
@@ -16,10 +16,12 @@ const StyledNewsTicker = styled.marquee`
   }
 `;
 
-export default function NewsTicker() {
+function NewsTicker() {
   return (
     <StyledNewsTicker>
       <div className="container">Work in progress, coming soon!</div>
     </StyledNewsTicker>
   );
 }
+
+export default withTheme(NewsTicker);
