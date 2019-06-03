@@ -16,12 +16,10 @@ const StyledNewsTicker = styled.div`
   }
 `;
 
-function NewsTicker() {
-  return (
-    <StyledNewsTicker>
-      <div className="container">Work in progress, coming soon!</div>
-    </StyledNewsTicker>
-  );
-}
+const NewsTicker = () => (
+  <StyledNewsTicker>
+    <div className="container">Work in progress, coming soon!</div>
+  </StyledNewsTicker>
+);
 
 export default NewsTicker;

@@ -9,35 +9,46 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
 import { ThemeProvider } from 'emotion-theming';
+import styled from '@emotion/styled';
 import theme from '../styles/theme';
 
 import NewsTicker from './NewsTicker';
+import UserMenu from './UserMenu';
 
 import './layout.css';
 
+const StyledLayout = styled.div`
+  height: 100vh;
+  width: 100vw;
+  font-family: roboto, "Noto Sans Myanmar UI", arial, sans-serif;
+
+  main {
+    height: 100%;
+  }
+
+  footer {
+    position: absolute;
+    bottom: 0;
+  }
+`;
+
 const Layout = ({ children }) => (
   <ThemeProvider theme={theme}>
-    <StaticQuery
-      query={graphql`
-        query SiteTitleQuery {
-          site {
-            siteMetadata {
-              title
+    <StyledLayout>
+      <StaticQuery
+        query={graphql`
+          query SiteTitleQuery {
+            site {
+              siteMetadata {
+                title
+              }
             }
           }
-        }
-      `}
-      render={data => (
-        <>
-          <NewsTicker />
-          <div
-            style={{
-              margin: '0 auto',
-              maxWidth: 960,
-              padding: '0px 1.0875rem 1.45rem',
-              paddingTop: 0,
-            }}
-          >
+        `}
+        render={data => (
+          <>
+            <NewsTicker />
+            <UserMenu />
             <main>{children}</main>
             <footer>
               ©
@@ -47,10 +58,10 @@ const Layout = ({ children }) => (
               {' '}
               <a href="https://www.gatsbyjs.org">Gatsby</a>
             </footer>
-          </div>
-        </>
-      )}
-    />
+          </>
+        )}
+      />
+    </StyledLayout>
   </ThemeProvider>
 );
 

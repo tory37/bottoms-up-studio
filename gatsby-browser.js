@@ -1,14 +1,8 @@
-// Tried wrapping page in theme, but this doesnt seem to work in prod build
-
 // import React from 'react';
 // import PropTypes from 'prop-types';
+// import GlobalStyles from './src/styles/global';
 
-// import { ThemeProvider } from 'emotion-theming';
-// import theme from './src/styles/theme';
-
-// export const wrapRootElement = ({ element }) => (
-//   <ThemeProvider theme={theme}>{element}</ThemeProvider>
-// );
+// export const wrapRootElement = ({ element }) => <GlobalStyles>{element}</GlobalStyles>;
 
 // wrapRootElement.propTypes = {
 //   element: PropTypes.element.isRequired,
