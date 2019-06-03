@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { withTheme } from 'styled-components';
+import styled from '@emotion/styled';
 
 const StyledNewsTicker = styled.div`
   height: 20px;
@@ -24,4 +24,4 @@ function NewsTicker() {
   );
 }
 
-export default withTheme(NewsTicker);
+export default NewsTicker;

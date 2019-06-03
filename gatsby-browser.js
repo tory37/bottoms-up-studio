@@ -1,7 +1,9 @@
+// Tried wrapping page in theme, but this doesnt seem to work in prod build
+
 // import React from 'react';
 // import PropTypes from 'prop-types';
 
-// import { ThemeProvider } from 'styled-components';
+// import { ThemeProvider } from 'emotion-theming';
 // import theme from './src/styles/theme';
 
 // export const wrapRootElement = ({ element }) => (
