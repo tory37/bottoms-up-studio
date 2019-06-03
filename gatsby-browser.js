@@ -1,3 +1,5 @@
+// Tried wrapping page in theme, but this doesnt seem to work in prod build
+
 // import React from 'react';
 // import PropTypes from 'prop-types';
 
