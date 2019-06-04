@@ -15,6 +15,7 @@ const StyledBUSButton = styled.div`
     bottom: 0;
     left: 0;
     background-color: transparent;
+    cursor: pointer;
 
     span {
       margin: 8px 16px;

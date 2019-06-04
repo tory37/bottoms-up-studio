@@ -11,6 +11,7 @@ import { StaticQuery, graphql } from 'gatsby';
 import { ThemeProvider } from 'emotion-theming';
 import styled from '@emotion/styled';
 import theme from '../styles/theme';
+import StyledGlobal from '../styles/StyledGlobal';
 
 import NewsTicker from './NewsTicker';
 import UserMenu from './UserMenu';
@@ -34,34 +35,36 @@ const StyledLayout = styled.div`
 
 const Layout = ({ children }) => (
   <ThemeProvider theme={theme}>
-    <StyledLayout>
-      <StaticQuery
-        query={graphql`
-          query SiteTitleQuery {
-            site {
-              siteMetadata {
-                title
+    <StyledGlobal>
+      <StyledLayout>
+        <StaticQuery
+          query={graphql`
+            query SiteTitleQuery {
+              site {
+                siteMetadata {
+                  title
+                }
               }
             }
-          }
-        `}
-        render={data => (
-          <>
-            <NewsTicker />
-            <UserMenu />
-            <main>{children}</main>
-            <footer>
-              ©
-              {' '}
-              {new Date().getFullYear()}
+          `}
+          render={data => (
+            <>
+              <NewsTicker />
+              <UserMenu />
+              <main>{children}</main>
+              <footer>
+                ©
+                {' '}
+                {new Date().getFullYear()}
 , Built with
-              {' '}
-              <a href="https://www.gatsbyjs.org">Gatsby</a>
-            </footer>
-          </>
-        )}
-      />
-    </StyledLayout>
+                {' '}
+                <a href="https://www.gatsbyjs.org">Gatsby</a>
+              </footer>
+            </>
+          )}
+        />
+      </StyledLayout>
+    </StyledGlobal>
   </ThemeProvider>
 );
 

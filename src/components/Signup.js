@@ -12,11 +12,6 @@ const StyledSignup = styled.div`
   border: ${props => props.theme.borders.default.border};
   border-radius: ${props => props.theme.borders.default.radius};
 
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-
   .title-row {
     display: flex;
     flex-direction: row;
@@ -70,51 +65,71 @@ const StyledSignup = styled.div`
   }
 `;
 
-const Login = () => {
-  const [login, setLogin] = useState({
+const Signup = () => {
+  const [signup, setSignup] = useState({
+    name: '',
     email: '',
     password: '',
+    password2: '',
     errors: {},
   });
 
   const onChange = (e) => {
     // TODO: ASK ABOUT THIS
-    const moddedState = _.clone(login);
+    const moddedState = _.clone(signup);
     moddedState[e.target.id] = e.target.value;
-    setLogin(moddedState);
+    setSignup(moddedState);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    const user = {
-      email: login.email,
-      password: login.password,
+    const newUser = {
+      name: signup.name,
+      email: signup.email,
+      password: signup.password,
+      password2: signup.password,
     };
 
-    console.log(user);
+    console.log(newUser);
   };
 
+  const nameLabel = 'Name';
   const emailLabel = 'Email';
   const passwordLabel = 'Password';
+  const password2Label = 'Confirm Password';
 
-  const emailSpan = login.email.length > 0 ? emailLabel : '\u00A0';
-  const passwordSpan = login.password.length > 0 ? passwordLabel : '\u00A0';
+  const nameSpan = signup.name.length > 0 ? nameLabel : '\u00A0';
+  const emailSpan = signup.email.length > 0 ? emailLabel : '\u00A0';
+  const passwordSpan = signup.password.length > 0 ? passwordLabel : '\u00A0';
+  const password2Span = signup.password2.length > 0 ? password2Label : '\u00A0';
 
   return (
     <StyledSignup>
       <form noValidate onSubmit={onSubmit}>
         <div className="title-row">
-          <div className="title">Login</div>
-          <Link to="/signup">Login</Link>
+          <div className="title">Signup</div>
+          <Link to="/login">Create An Account</Link>
         </div>
+
+        <label htmlFor="name">
+          <span>{nameSpan}</span>
+          <input
+            onChange={onChange}
+            value={signup.name}
+            error={signup.errors.name}
+            id="name"
+            type="text"
+            placeholder={nameLabel}
+          />
+        </label>
 
         <label htmlFor="email">
           <span>{emailSpan}</span>
           <input
             onChange={onChange}
-            value={login.email}
-            error={login.errors.email}
+            value={signup.email}
+            error={signup.errors.email}
             id="email"
             type="email"
             placeholder={emailLabel}
@@ -125,11 +140,23 @@ const Login = () => {
           <span>{passwordSpan}</span>
           <input
             onChange={onChange}
-            value={login.password}
-            error={login.errors.password}
+            value={signup.password}
+            error={signup.errors.password}
             id="password"
             type="password"
             placeholder={passwordLabel}
+          />
+        </label>
+
+        <label htmlFor="password2">
+          <span>{password2Span}</span>
+          <input
+            onChange={onChange}
+            value={signup.password2}
+            error={signup.errors.password2}
+            id="password2"
+            type="password"
+            placeholder={password2Label}
           />
         </label>
 
@@ -141,4 +168,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
