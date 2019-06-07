@@ -87,9 +87,9 @@ const Login = (props) => {
     }
 
     if (props.errors) {
-      setLogin({
-        errors: props.errors,
-      });
+      const moddedState = _.clone(login);
+      moddedState.errors = props.errors;
+      setLogin(moddedState);
     }
   });
 

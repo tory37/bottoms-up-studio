@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from '@emotion/styled';
-// TODO: Wrap app in theme and use withTheme here to pass the colors
-// import { withTheme } from 'emotion-theming';
 
 const StyledWelcomePage = styled.div`
   height: 100vh;
