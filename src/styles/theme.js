@@ -6,6 +6,8 @@ const theme = {
       radius: '8px',
     },
   },
+  textColor: 'black',
+  lightTextColor: 'gray',
 };
 
 export default theme;

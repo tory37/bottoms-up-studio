@@ -23,8 +23,7 @@ import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 
 import WelcomeBubble from '../components/WelcomeBubble';
-
-const baseBorderWidth = '3px';
+import StyledShadowedBox from '../styles/StyledShadowedBox';
 
 const StyledWelcomePage = styled.div`
   padding-top: 50px;
@@ -55,55 +54,39 @@ const StyledWelcomePage = styled.div`
   .content {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    flex-align: center;
-
-    .options {
-      width: 50%;
-      margin-top: 30px;
-      border-top: solid ${props => props.baseBorderWidth} black;
-      border-bottom: solid ${props => props.baseBorderWidth} black;
-    }
-  }
-
-  .bubbles {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: row;
     justify-content: space-around;
-    align-items: center;
+    flex-align: center;
+    margin-top: 20px;
 
-    .bubble-wrapper {
-      width: 25vw;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-    }
-  }
-`;
+    .welcome-bubble {
+      width: 225px;
 
-const StyledOption = styled.div`
-  border-top: solid ${props => props.baseBorderWidth} black;
-  border-bottom: solid ${props => props.baseBorderWidth} black;
-  text-align: end;
-  font-size: 24px;
-  padding: 15px;
-  background-color: ${props => (props.royal && '#4B0082') || (props.brick && '#B22222') || (props.leaf && '#285406')};
-  position: relative;
+      a {
+        text-decoration: none;
+        color: ${props => props.theme.textColor};
+      }
 
-  .psuedo-border {
-    height: 100%;
-    width: calc(${props => props.baseBorderWidth} * 2);
-    background-color: black;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
+      .image {
+        height: 85px;
+        background-color: #4b0082;
+      }
 
-  &:hover {
-    .psuedo-border {
-      background-color: ${props => (props.royal && '#4B0082') || (props.brick && '#B22222') || (props.leaf && '#285406')};
+      .body {
+        padding: 10px;
+        background-color: white;
+
+        .title {
+          font-size: 14px;
+          font-weight: 600;
+          text-transform: uppercase;
+        }
+
+        .description {
+          font-size: 12px;
+          color: ${props => props.theme.lightTextColor};
+          line-height: 12px;
+        }
+      }
     }
   }
 `;
@@ -113,7 +96,7 @@ const returningUserDesc = 'Click here to login if you are a returning user.';
 const newUserDesc = "Click here to create an account if you'd like to join.";
 
 const WelcomePage = () => (
-  <StyledWelcomePage baseBorderWidth={baseBorderWidth}>
+  <StyledWelcomePage>
     <div className="header-outter">
       <div className="header-middle">
         <div className="header-inner">
@@ -124,23 +107,22 @@ const WelcomePage = () => (
     </div>
 
     <div className="content">
-      <div className="options">
-        <StyledOption royal baseBorderWidth={baseBorderWidth}>
-          Potential Employer
-          <div className="psuedo-border" />
-        </StyledOption>
-        <StyledOption brick baseBorderWidth={baseBorderWidth}>
-          Returning User
-          <div className="psuedo-border" />
-        </StyledOption>
-        <StyledOption leaf baseBorderWidth={baseBorderWidth}>
-          New User
-          <div className="psuedo-border" />
-        </StyledOption>
+      <div className="welcome-bubble">
+        <Link to="/building">
+          <StyledShadowedBox>
+            <div className="image" />
+            <div className="body">
+              <div className="title">Potential Employer</div>
+              <div className="description">
+                Click here to see resume information for Tory Hebert
+              </div>
+            </div>
+          </StyledShadowedBox>
+        </Link>
       </div>
     </div>
 
-    <div className="bubbles">
+    {/* <div className="bubbles">
       <Link to="/building">
         <div className="bubble-wrapper">
           <WelcomeBubble
@@ -162,7 +144,7 @@ const WelcomePage = () => (
           <WelcomeBubble title="New User" description={newUserDesc} color="#FFDB00" />
         </div>
       </Link>
-    </div>
+    </div> */}
   </StyledWelcomePage>
 );
 
