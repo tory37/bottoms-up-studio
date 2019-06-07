@@ -14,6 +14,7 @@ const StyledSignup = styled.div`
   padding: 48px 40px 36px;
   border: ${props => props.theme.borders.default.border};
   border-radius: ${props => props.theme.borders.default.radius};
+  background-color: white;
 
   display: flex;
   flex-direction: column;
