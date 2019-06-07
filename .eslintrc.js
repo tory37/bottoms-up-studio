@@ -8,5 +8,6 @@ module.exports = {
       },
     },
     "import/prefer-default-export": "off",
+    //quotes: ["backtick", { allowTemplateLiterals: true }],
   },
 }

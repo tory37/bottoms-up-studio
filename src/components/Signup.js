@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'gatsby';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
+import { registerUser } from '../actions/authActions';
 
 import BUSButton from './BUSButton';
 
@@ -65,13 +68,21 @@ const StyledSignup = styled.div`
   }
 `;
 
-const Signup = () => {
+const Signup = (props) => {
   const [signup, setSignup] = useState({
     name: '',
     email: '',
     password: '',
     password2: '',
     errors: {},
+  });
+
+  useEffect(() => {
+    if (props.errors) {
+      const moddedState = _.clone(signup);
+      moddedState.errors = props.errors;
+      setSignup(moddedState);
+    }
   });
 
   const onChange = (e) => {
@@ -91,7 +102,7 @@ const Signup = () => {
       password2: signup.password,
     };
 
-    console.log(newUser);
+    props.registerUser(newUser, props.history);
   };
 
   const nameLabel = 'Name';
@@ -99,10 +110,10 @@ const Signup = () => {
   const passwordLabel = 'Password';
   const password2Label = 'Confirm Password';
 
-  const nameSpan = signup.name.length > 0 ? nameLabel : '\u00A0';
-  const emailSpan = signup.email.length > 0 ? emailLabel : '\u00A0';
-  const passwordSpan = signup.password.length > 0 ? passwordLabel : '\u00A0';
-  const password2Span = signup.password2.length > 0 ? password2Label : '\u00A0';
+  const nameSpan = signup.name && signup.name.length > 0 ? nameLabel : '\u00A0';
+  const emailSpan = signup.email && signup.email.length > 0 ? emailLabel : '\u00A0';
+  const passwordSpan = signup.password && signup.password.length > 0 ? passwordLabel : '\u00A0';
+  const password2Span = signup.password2 && signup.password2.length > 0 ? password2Label : '\u00A0';
 
   return (
     <StyledSignup>
@@ -121,7 +132,9 @@ const Signup = () => {
             id="name"
             type="text"
             placeholder={nameLabel}
+            className={signup.errors.name ? 'error' : ''}
           />
+          <span>{signup.errors.name}</span>
         </label>
 
         <label htmlFor="email">
@@ -133,7 +146,9 @@ const Signup = () => {
             id="email"
             type="email"
             placeholder={emailLabel}
+            className={signup.errors.email ? 'error' : ''}
           />
+          <span>{signup.errors.email}</span>
         </label>
 
         <label htmlFor="password">
@@ -145,7 +160,9 @@ const Signup = () => {
             id="password"
             type="password"
             placeholder={passwordLabel}
+            className={signup.errors.password ? 'error' : ''}
           />
+          <span>{signup.errors.password}</span>
         </label>
 
         <label htmlFor="password2">
@@ -157,7 +174,9 @@ const Signup = () => {
             id="password2"
             type="password"
             placeholder={password2Label}
+            className={signup.errors.password2 ? 'error' : ''}
           />
+          <span>{signup.errors.password2}</span>
         </label>
 
         <div className="bus-button">
@@ -168,4 +187,17 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+Signup.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors,
+});
+
+export default connect(
+  mapStateToProps,
+  { registerUser },
+)(Signup);

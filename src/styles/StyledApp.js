@@ -1,6 +1,8 @@
 import styled from '@emotion/styled';
 
-const StyledGlobal = styled.div`
+const StyledApp = styled.div`
+  font-family: roboto, "Noto Sans Myanmar UI", arial, sans-serif;
+
   input {
     font: 400 16px Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
     height: 24px;
@@ -9,4 +11,4 @@ const StyledGlobal = styled.div`
   }
 `;
 
-export default StyledGlobal;
+export default StyledApp;

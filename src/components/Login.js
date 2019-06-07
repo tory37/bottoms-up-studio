@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 import _ from 'lodash';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { loginUser } from '../actions/authActions';
 
 import BUSButton from './BUSButton';
 
@@ -70,11 +73,23 @@ const StyledSignup = styled.div`
   }
 `;
 
-const Login = () => {
+const Login = (props) => {
   const [login, setLogin] = useState({
     email: '',
     password: '',
     errors: {},
+  });
+
+  useEffect(() => {
+    if (props.auth.isAuthenticated) {
+      this.props.history.push('/home'); // push user to home when they login
+    }
+
+    if (props.errors) {
+      setLogin({
+        errors: props.errors,
+      });
+    }
   });
 
   const onChange = (e) => {
@@ -92,21 +107,23 @@ const Login = () => {
       password: login.password,
     };
 
+    props.loginUser(user); // since we handle the redirect within our component, we don't need to pass in props.history as a paramter
+
     console.log(user);
   };
 
   const emailLabel = 'Email';
   const passwordLabel = 'Password';
 
-  const emailSpan = login.email.length > 0 ? emailLabel : '\u00A0';
-  const passwordSpan = login.password.length > 0 ? passwordLabel : '\u00A0';
+  const emailSpan = login.email && login.email.length > 0 ? emailLabel : '\u00A0';
+  const passwordSpan = login.password && login.password.length > 0 ? passwordLabel : '\u00A0';
 
   return (
     <StyledSignup>
       <form noValidate onSubmit={onSubmit}>
         <div className="title-row">
           <div className="title">Login</div>
-          <Link to="/signup">Login</Link>
+          <Link to="/signup">Signup</Link>
         </div>
 
         <label htmlFor="email">
@@ -118,7 +135,9 @@ const Login = () => {
             id="email"
             type="email"
             placeholder={emailLabel}
+            className={login.errors.email ? 'error' : ''}
           />
+          <span>{login.errors.email}</span>
         </label>
 
         <label htmlFor="password">
@@ -130,7 +149,9 @@ const Login = () => {
             id="password"
             type="password"
             placeholder={passwordLabel}
+            className={login.errors.password ? 'error' : ''}
           />
+          <span>{login.errors.password}</span>
         </label>
 
         <div className="bus-button">
@@ -141,4 +162,18 @@ const Login = () => {
   );
 };
 
-export default Login;
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors,
+});
+
+export default connect(
+  mapStateToProps,
+  { loginUser },
+)(Login);
