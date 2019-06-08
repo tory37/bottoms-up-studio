@@ -1,7 +1,6 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import createStore from './src/store';
-import StyledApp from './src/styles/StyledApp';
+// import React from 'react';
+// import { Provider } from 'react-redux';
+// import createStore from './src/store';
 
 // const loadDevTools = () =>
 //   process.env.NODE_ENV === 'development' && window.devToolsExtension

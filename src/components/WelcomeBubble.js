@@ -1,72 +1,67 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
+import { Link } from 'gatsby';
+import StyledShadowedBox from '../styles/StyledShadowedBox';
 
 const StyledWelcomeBubble = styled.div`
-  position: relative;
-  width: 90%;
-  /* width: 100%;
-  height: 200px; */
-  background-color: ${props => props.color};
-  cursor: pointer;
-  border-radius: 10px;
-  color: white;
+  min-width: 225px;
+  max-width: 225px;
 
-  &:before {
-    content: "";
-    display: block;
-    padding-top: 100%;
+  &:hover {
+    box-shadow: 0 0 20px 1px ${props => props.color};
   }
 
-  .wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+  a {
+    text-decoration: none;
+    color: ${props => props.theme.textColor};
+  }
 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+  .image {
+    height: 85px;
+    background-color: ${props => props.color};
 
-    margin-left: 5px;
-    margin-right: 5px;
-    text-align: center;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .body {
+    padding: 10px;
+    background-color: white;
+    height: 80px;
 
     .title {
-      margin-top: 25%;
-      font-size: 24px;
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
     }
 
     .description {
-      margin-top: 5px;
-      font-size: 14px;
+      font-size: 12px;
+      color: ${props => props.theme.lightTextColor};
+      line-height: 12px;
     }
   }
-
-  &:hover {
-      width: 100%;
-
-      .title {
-        font-size: 28px;
-      }
-
-      .description {
-        font-size: 16px;
-      }
-    }s
-
-  /* min-width: 100%;
-  height: auto; */
 `;
 
-const WelcomeBubble = ({ title, description, color }) => (
+const WelcomeBubble = ({
+  title, description, color, linkUrl, imageUrl,
+}) => (
   <StyledWelcomeBubble color={color}>
-    <div className="wrapper">
-      <div className="title">{title}</div>
-      <div className="description">{description}</div>
-    </div>
+    <Link to={linkUrl}>
+      <StyledShadowedBox>
+        <div className="image">
+          <img src={imageUrl} alt={title} />
+        </div>
+        <div className="body">
+          <div className="title">{title}</div>
+          <div className="description">{description}</div>
+        </div>
+      </StyledShadowedBox>
+    </Link>
   </StyledWelcomeBubble>
 );
 
@@ -74,6 +69,8 @@ WelcomeBubble.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
+  linkUrl: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
 };
 
 export default WelcomeBubble;

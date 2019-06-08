@@ -20,10 +20,8 @@
 
 import React from 'react';
 import styled from '@emotion/styled';
-import { Link } from 'gatsby';
 
 import WelcomeBubble from '../components/WelcomeBubble';
-import StyledShadowedBox from '../styles/StyledShadowedBox';
 
 const StyledWelcomePage = styled.div`
   padding-top: 50px;
@@ -57,43 +55,18 @@ const StyledWelcomePage = styled.div`
     justify-content: space-around;
     flex-align: center;
     margin-top: 20px;
+    flex-wrap: wrap;
 
     .welcome-bubble {
-      width: 225px;
-
-      a {
-        text-decoration: none;
-        color: ${props => props.theme.textColor};
-      }
-
-      .image {
-        height: 85px;
-        background-color: #4b0082;
-      }
-
-      .body {
-        padding: 10px;
-        background-color: white;
-
-        .title {
-          font-size: 14px;
-          font-weight: 600;
-          text-transform: uppercase;
-        }
-
-        .description {
-          font-size: 12px;
-          color: ${props => props.theme.lightTextColor};
-          line-height: 12px;
-        }
-      }
+      margin: 20px;
     }
   }
 `;
 
 const potentialEmployerDesc = "Click here if you are a potential employer looking for Tory Hebert's resume.";
-const returningUserDesc = 'Click here to login if you are a returning user.';
+const returningUserDesc = 'Click here to login if you have already signed up';
 const newUserDesc = "Click here to create an account if you'd like to join.";
+const curiousCatDesc = 'Click here to see a breakdown of the tools used to build this webapp.';
 
 const WelcomePage = () => (
   <StyledWelcomePage>
@@ -108,17 +81,43 @@ const WelcomePage = () => (
 
     <div className="content">
       <div className="welcome-bubble">
-        <Link to="/building">
-          <StyledShadowedBox>
-            <div className="image" />
-            <div className="body">
-              <div className="title">Potential Employer</div>
-              <div className="description">
-                Click here to see resume information for Tory Hebert
-              </div>
-            </div>
-          </StyledShadowedBox>
-        </Link>
+        <WelcomeBubble
+          title="Potential Employer"
+          description={potentialEmployerDesc}
+          color="#4b0082"
+          linkUrl="/building"
+          imageUrl="https://images.unsplash.com/photo-1515778767554-42d4b373f2b3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
+        />
+      </div>
+
+      <div className="welcome-bubble">
+        <WelcomeBubble
+          title="Returning User"
+          description={returningUserDesc}
+          color="#B22222"
+          linkUrl="/login"
+          imageUrl="https://images.unsplash.com/photo-1552267349-77e8b9af61c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
+        />
+      </div>
+
+      <div className="welcome-bubble">
+        <WelcomeBubble
+          title="New User"
+          description={newUserDesc}
+          color="#FFDB00"
+          linkUrl="/signup"
+          imageUrl="https://images.unsplash.com/photo-1469647306420-8af65f90d810?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
+        />
+      </div>
+
+      <div className="welcome-bubble">
+        <WelcomeBubble
+          title="Curious Cat"
+          description={curiousCatDesc}
+          color="#1a700f"
+          linkUrl="/building"
+          imageUrl="https://images.unsplash.com/photo-1521997888043-aa9c827744f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
+        />
       </div>
     </div>
 
