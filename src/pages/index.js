@@ -49,16 +49,22 @@ const StyledWelcomePage = styled.div`
     }
   }
 
-  .content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-align: center;
-    margin-top: 20px;
-    flex-wrap: wrap;
+  .content-wrapper {
+    width: 100%;
+    text-align: center;
 
-    .welcome-bubble {
-      margin: 20px;
+    .content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      flex-align: center;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      max-width: 1170px;
+
+      .welcome-bubble {
+        margin: 20px;
+      }
     }
   }
 `;
@@ -79,45 +85,47 @@ const WelcomePage = () => (
       </div>
     </div>
 
-    <div className="content">
-      <div className="welcome-bubble">
-        <WelcomeBubble
-          title="Potential Employer"
-          description={potentialEmployerDesc}
-          color="#4b0082"
-          linkUrl="/building"
-          imageUrl="https://images.unsplash.com/photo-1515778767554-42d4b373f2b3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
-        />
-      </div>
+    <div className="content-wrapper">
+      <div className="content">
+        <div className="welcome-bubble">
+          <WelcomeBubble
+            title="Potential Employer"
+            description={potentialEmployerDesc}
+            color="#4b0082"
+            linkUrl="/building"
+            imageUrl="https://images.unsplash.com/photo-1515778767554-42d4b373f2b3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
+          />
+        </div>
 
-      <div className="welcome-bubble">
-        <WelcomeBubble
-          title="Returning User"
-          description={returningUserDesc}
-          color="#B22222"
-          linkUrl="/login"
-          imageUrl="https://images.unsplash.com/photo-1552267349-77e8b9af61c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
-        />
-      </div>
+        <div className="welcome-bubble">
+          <WelcomeBubble
+            title="Returning User"
+            description={returningUserDesc}
+            color="#B22222"
+            linkUrl="/login"
+            imageUrl="https://images.unsplash.com/photo-1552267349-77e8b9af61c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
+          />
+        </div>
 
-      <div className="welcome-bubble">
-        <WelcomeBubble
-          title="New User"
-          description={newUserDesc}
-          color="#FFDB00"
-          linkUrl="/signup"
-          imageUrl="https://images.unsplash.com/photo-1469647306420-8af65f90d810?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
-        />
-      </div>
+        <div className="welcome-bubble">
+          <WelcomeBubble
+            title="New User"
+            description={newUserDesc}
+            color="#FFDB00"
+            linkUrl="/signup"
+            imageUrl="https://images.unsplash.com/photo-1469647306420-8af65f90d810?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
+          />
+        </div>
 
-      <div className="welcome-bubble">
-        <WelcomeBubble
-          title="Curious Cat"
-          description={curiousCatDesc}
-          color="#1a700f"
-          linkUrl="/building"
-          imageUrl="https://images.unsplash.com/photo-1521997888043-aa9c827744f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
-        />
+        <div className="welcome-bubble">
+          <WelcomeBubble
+            title="Curious Cat"
+            description={curiousCatDesc}
+            color="#1a700f"
+            linkUrl="/building"
+            imageUrl="https://images.unsplash.com/photo-1521997888043-aa9c827744f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"
+          />
+        </div>
       </div>
     </div>
 
