@@ -121,7 +121,7 @@ const Signup = (props) => {
         <form noValidate onSubmit={onSubmit}>
           <div className="title-row">
             <div className="title">Signup</div>
-            <Link to="/login">Create An Account</Link>
+            <Link to="/login">Login</Link>
           </div>
 
           <label htmlFor="name">

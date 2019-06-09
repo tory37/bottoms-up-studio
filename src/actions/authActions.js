@@ -12,7 +12,7 @@ export const setCurrentUser = decoded => ({
 });
 
 // User loading
-export const sertUserLoading = () => ({
+export const settUserLoading = () => ({
   type: USER_LOADING,
 });
 
@@ -32,7 +32,7 @@ export const loginUser = userData => (dispatch) => {
   axios
     .post('/api/users/login', userData)
     .then((res) => {
-      // Save to localStor
+      // Save to localStorage
 
       // Set token to localStorage
       const { token } = res.data;
