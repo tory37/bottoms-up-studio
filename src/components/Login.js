@@ -7,13 +7,12 @@ import { connect } from 'react-redux';
 import { loginUser } from '../actions/authActions';
 
 import BUSButton from './BUSButton';
+import StyledShadowedBox from '../styles/StyledShadowedBox';
 
 const StyledSignup = styled.div`
   width: 450px;
   height: auto;
   padding: 48px 40px 36px;
-  border: ${props => props.theme.borders.default.border};
-  border-radius: ${props => props.theme.borders.default.radius};
   background-color: white;
 
   display: flex;
@@ -120,46 +119,48 @@ const Login = (props) => {
   const passwordSpan = login.password && login.password.length > 0 ? passwordLabel : '\u00A0';
 
   return (
-    <StyledSignup>
-      <form noValidate onSubmit={onSubmit}>
-        <div className="title-row">
-          <div className="title">Login</div>
-          <Link to="/signup">Signup</Link>
-        </div>
+    <StyledShadowedBox>
+      <StyledSignup>
+        <form noValidate onSubmit={onSubmit}>
+          <div className="title-row">
+            <div className="title">Login</div>
+            <Link to="/signup">Signup</Link>
+          </div>
 
-        <label htmlFor="email">
-          <span>{emailSpan}</span>
-          <input
-            onChange={onChange}
-            value={login.email}
-            error={login.errors.email}
-            id="email"
-            type="email"
-            placeholder={emailLabel}
-            className={login.errors.email ? 'error' : ''}
-          />
-          <span>{login.errors.email}</span>
-        </label>
+          <label htmlFor="email">
+            <span>{emailSpan}</span>
+            <input
+              onChange={onChange}
+              value={login.email}
+              error={login.errors.email}
+              id="email"
+              type="email"
+              placeholder={emailLabel}
+              className={login.errors.email ? 'error' : ''}
+            />
+            <span>{login.errors.email}</span>
+          </label>
 
-        <label htmlFor="password">
-          <span>{passwordSpan}</span>
-          <input
-            onChange={onChange}
-            value={login.password}
-            error={login.errors.password}
-            id="password"
-            type="password"
-            placeholder={passwordLabel}
-            className={login.errors.password ? 'error' : ''}
-          />
-          <span>{login.errors.password}</span>
-        </label>
+          <label htmlFor="password">
+            <span>{passwordSpan}</span>
+            <input
+              onChange={onChange}
+              value={login.password}
+              error={login.errors.password}
+              id="password"
+              type="password"
+              placeholder={passwordLabel}
+              className={login.errors.password ? 'error' : ''}
+            />
+            <span>{login.errors.password}</span>
+          </label>
 
-        <div className="bus-button">
-          <BUSButton className="bus-button" />
-        </div>
-      </form>
-    </StyledSignup>
+          <div className="bus-button">
+            <BUSButton className="bus-button" />
+          </div>
+        </form>
+      </StyledSignup>
+    </StyledShadowedBox>
   );
 };
 
